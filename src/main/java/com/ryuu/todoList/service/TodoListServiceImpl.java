@@ -1,5 +1,4 @@
 package com.ryuu.todoList.service;
-import com.ryuu.todoList.config.ModelMapperConfig;
 import com.ryuu.todoList.exception.TaskNotFoundException;
 import com.ryuu.todoList.model.Todo;
 import com.ryuu.todoList.repository.TodoListRepo;
@@ -51,5 +50,22 @@ public class TodoListServiceImpl implements TodoListService{
                 .orElseThrow(() -> new TaskNotFoundException("There is no task found with that ID: " + id));
         task.setCompleted(!task.getCompleted());
         return todoListRepo.save(task);
+    }
+
+    @Override
+    public Todo updateTask(Long id,TodoRequest todoRequest) {
+        Todo task = todoListRepo.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("There is no task found with that ID: " + id));
+        if(todoRequest.getTitle()!=null && !todoRequest.getTitle().trim().isEmpty()){
+            task.setTitle(todoRequest.getTitle().trim());
+        }
+        if(todoRequest.getCompleted()!=null){
+            task.setCompleted(todoRequest.getCompleted());
+        }
+        return todoListRepo.save(task);
+    }
+
+    public List<Todo> search(String keyWord){
+        return todoListRepo.searchByKeyWord(keyWord);
     }
 }

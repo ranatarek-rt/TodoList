@@ -83,6 +83,10 @@
             color: white;
         }
 
+        .update-button {
+            background-color: #8528a7;
+            color: white;
+        }
         .toggle-button {
             background-color: #ffc107;
             color: black;
@@ -114,6 +118,13 @@
 <div class="container">
     <!-- Button to Navigate to Form Page -->
     <a href="/todo/taskForm" class="add-task-button">Add New Task</a>
+    <form th:action="@{/todo/search}" method="get" style="text-align: center; margin-bottom: 20px;">
+        <input type="text" name="key" placeholder="Search tasks..." required
+               style="padding: 8px; width: 70%; border: 1px solid #ccc; border-radius: 5px;">
+        <button type="submit" style="padding: 8px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Search
+        </button>
+    </form>
 
     <table>
         <thead>
@@ -150,6 +161,11 @@
                         <span th:text="${task.completed ? 'Undo' : 'Complete'}"></span>
                     </button>
                 </form>
+
+                <form th:action="@{/todo/updateForm/{taskId}(taskId=${task.id})}" method="get">
+                    <button type="submit" class="update-button">Update</button>
+                </form>
+
             </td>
         </tr>
         </tbody>

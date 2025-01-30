@@ -58,4 +58,25 @@ public class TodoListController {
         todoListService.toggle(taskId);
         return "redirect:/todo"; // Redirect to the main task list page
     }
+
+    @PostMapping("/update/{taskId}")
+    public String taskUpdate(@PathVariable Long taskId,@ModelAttribute TodoRequest todoRequest){
+        todoListService.updateTask(taskId,todoRequest);
+        return "redirect:/todo";
+
+    }
+    @GetMapping("/updateForm/{taskId}")
+    public String showUpdateForm(@PathVariable Long taskId, Model model) {
+        Todo task = todoListService.findBYId(taskId); // Fetch task by ID
+        model.addAttribute("task", task); // Pass task to Thymeleaf
+        return "updateForm"; // Render the update form
+    }
+
+    @GetMapping("/search")
+    public String searchTasks(@RequestParam String key, Model model) {
+        List<Todo> results = todoListService.search(key);
+        model.addAttribute("tasks", results);
+        return "tasks";  // Return the same HTML template
+    }
+
 }

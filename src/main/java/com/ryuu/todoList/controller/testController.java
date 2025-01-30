@@ -16,6 +16,12 @@ public class testController {
         this.todoListService = todoListService;
 
     }
+
+//    @PatchMapping("/update/{taskId}")
+//    public Todo taskUpdate(@PathVariable Long taskId,@RequestBody TodoRequest todoRequest){
+//        return todoListService.updateTask(taskId,todoRequest);
+//
+//    }
 //    @PostMapping()
 //    public Todo createTask(@RequestBody TodoRequest todoRequest) {
 //        return todoListService.createTask(todoRequest);

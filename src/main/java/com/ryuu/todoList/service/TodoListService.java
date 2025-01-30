@@ -13,4 +13,7 @@ public interface TodoListService {
     Todo findBYId(Long id);
     void deleteTask(Long id);
     Todo toggle(Long id);
+    Todo updateTask(Long id,TodoRequest todoRequest);
+    List<Todo> search(String keyWord);
+
 }

@@ -67,16 +67,16 @@ public class TodoListController {
     }
     @GetMapping("/updateForm/{taskId}")
     public String showUpdateForm(@PathVariable Long taskId, Model model) {
-        Todo task = todoListService.findBYId(taskId); // Fetch task by ID
-        model.addAttribute("task", task); // Pass task to Thymeleaf
-        return "updateForm"; // Render the update form
+        Todo task = todoListService.findBYId(taskId);
+        model.addAttribute("task", task);
+        return "updateForm";
     }
 
     @GetMapping("/search")
     public String searchTasks(@RequestParam String key, Model model) {
         List<Todo> results = todoListService.search(key);
         model.addAttribute("tasks", results);
-        return "tasks";  // Return the same HTML template
+        return "tasks";
     }
 
 }

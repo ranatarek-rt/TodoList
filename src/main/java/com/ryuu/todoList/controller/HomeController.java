@@ -1,16 +1,13 @@
 package com.ryuu.todoList.controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
-@RestController
+@Controller
 public class HomeController {
-
-    @RequestMapping(value="/")
-    public void redirectHome(HttpServletResponse response) throws IOException {
-        response.sendRedirect("/swagger-ui.html");
+    @GetMapping("/")
+    public String redirectHome() {
+        return "redirect:/swagger-ui/index.html";
     }
+
 }

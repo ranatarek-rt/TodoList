@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .task-details p {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .task-details span {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .btn-back:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-toggle {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    .btn-toggle:hover {
+      background-color: #e0a800;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Task Details</h1>
+  <div class="task-details">
+    <p><strong>ID:</strong> <span th:text="${task.id}"></span></p>
+    <p><strong>Title:</strong> <span th:text="${task.title}"></span></p>
+    <p><strong>Completed:</strong> <span th:text="${task.completed ? 'Yes' : 'No'}"></span></p>
+  </div>
+
+  <div class="buttons">
+    <a href="/todo" class="btn btn-back">Back to Todo List</a>
+
+    <form th:action="@{/todo/toggle/{taskId}(taskId=${task.id})}" method="post">
+      <input type="hidden" name="_method" value="put"/>
+      <button type="submit" class="btn btn-toggle" th:text="${task.completed ? 'Undo' : 'Complete'}"></button>
+    </form>
+
+    <form th:action="@{/todo/{taskId}(taskId=${task.id})}" method="post">
+      <input type="hidden" name="_method" value="delete"/>
+      <button type="submit" class="btn btn-delete">Delete</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

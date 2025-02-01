@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "0845ab24-ddf9-485f-9a50-b8425eb4e166",
+		"name": "TodoList",
+		"description": "This Postman collection contains all the API endpoints for managing tasks in the Todo List App.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30280541"
+	},
+	"item": [
+		{
+			"name": "get all tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/test"
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"task test 77\",\r\n    \"completed\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/test"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/test/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Toggle task status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8080/test/toggle/1"
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/test/3"
+			},
+			"response": []
+		},
+		{
+			"name": "update task data",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"task test last update\",\r\n    \"completed\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/test/update/1"
+			},
+			"response": []
+		}
+	]
+}
